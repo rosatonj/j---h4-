@@ -788,7 +788,8 @@ public class Parser {
 			return new JIfStatement(line, test, consequent, alternate);
 		} else if (have(FOR)) { // Modified HW3
 			mustBe(LPAREN);
-			if (seeBasicType()) { // checks if data type is instantiated in the
+			JVariableDeclarator initialize =variableDeclarator(type());
+            if (seeBasicType()) { // checks if data type is instantiated in the
 									// loop
 				JVariableDeclarator init = variableDeclarator(type());
 				if (have(COLON)) { // enhanced for-loop

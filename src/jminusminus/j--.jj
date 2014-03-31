@@ -190,6 +190,7 @@ TOKEN:
 | < MINUS: "-" >
 | < PLUS_ASSIGN: "+=" >
 | < STAR: "*" >
+| < COLON: ":">
 }
 
 // Separators (these could be combined with the reserved words)
@@ -688,18 +689,18 @@ private JStatement blockStatement(): {
 
 private JStatement statement(): {
     int line = 0;
-
+    JExpression array = null;
     JStatement statement = null;
     JExpression test = null;
     JStatement consequent = null;
     JStatement alternate = null;
     JStatement body = null;
     JExpression expr = null;
-
+    JVariableDeclarator var = null;
     JStatement initialize =null;
     JStatement terminate = null;
     JExpression update = null;
-    JBlock block = null;
+    JBlock bodyblock = null;
 
 
 }
@@ -723,14 +724,25 @@ private JStatement statement(): {
 
         <FOR>  { line = token.beginLine; }
             <LPAREN>
-                initialize = statement()
-                terminate = statement()
-                update = expression()
-            <RPAREN>
-                block = block()
+                var =variableDeclarator(type())
+                [
+                    LOOKAHEAD( <COLON> )
 
-        {statement =
-         new JForStatement(line, initialize, terminate, update, block );} |
+                    (<COLON> array = primary())|
+
+                    (<SEMI>
+                        terminate = expression()
+                    <SEMI>
+                        update = expression() )
+                ]
+            <RPAREN>
+                bodyblock = block()
+
+                {if (terminate==null)
+                 {statement = new JEnhancedForStatement(line, var, array, bodyblock);}
+
+                 else {statement = new JForStatement(line, var, terminate, update, bodyblock );}
+                }|
 
         <WHILE> { line = token.beginLine; }
         test = parExpression() 
