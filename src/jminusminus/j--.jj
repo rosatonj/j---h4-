@@ -149,6 +149,7 @@ TOKEN:
 | < BOOLEAN: "boolean" >
 | < CHAR: "char" >
 | < CLASS: "class" >
+| < DOUBLE: "double">
 | < ELSE: "else" >
 | < EXTENDS: "extends" >
 | < FOR: "for" >
@@ -210,18 +211,25 @@ TOKEN:
 | < #LETTER: ["a"-"z","A"-"Z"] >
 | < #DIGIT: ["0"-"9"] >
 | < #NON_ZERO_DIGIT: ["1"-"9"] >
+| < #EXPONENT: ("E"|"e") >
+| < #SIGN: ("+"|"-")>
+| < #SUFFIX: ("D"|"d"|"F"|"f")>
 }
 
 // Literals
 TOKEN:
 {
-  < INT_LITERAL: ("0" | <NON_ZERO_DIGIT> (<DIGIT>)*) >
+  < INT_LITERAL:    ("0" |  <NON_ZERO_DIGIT> (<DIGIT>)*) >
+| < DOUBLE_LITERAL: ( (<DIGIT>)*<DOT>(<DIGIT>)* (<EXPONENT><NON_ZERO_DIGIT>|<EXPONENT><SIGN><NON_ZERO_DIGIT>)?(<DIGIT>)*(<SUFFIX>)?
+                    | <DOT> (<DIGIT>)*(<EXPONENT><NON_ZERO_DIGIT> | <EXPONENT><SIGN><NON_ZERO_DIGIT>)?(<DIGIT>)*(<SUFFIX>)?
+                    | (<DIGIT>)* (<EXPONENT><NON_ZERO_DIGIT> | <EXPONENT><SIGN><NON_ZERO_DIGIT> )  (<DIGIT>)* (<SUFFIX>)?
+                    | (<DIGIT>)* (<EXPONENT><NON_ZERO_DIGIT> | <EXPONENT><SIGN><NON_ZERO_DIGIT> )? (<DIGIT>)* <SUFFIX> )>
 | < CHAR_LITERAL: "'" (<ESC> | ~["'","\\","\n","\r"]) "'" >
 | < STRING_LITERAL: "\"" (<ESC> | ~["\"","\\","\n","\r"])* "\"" >   
 | < #ESC: "\\" ["n","t","b","r","f","\\","'","\""] >
 }
 
-// For anything else, we return an ERROR token. Without this 
+// For anything else, we return an ERROR token. Without this
 // definition the TokenManager will throw an Error when a lexical 
 // error occurs, making it impossible to recover from it. So we 
 // define this ERROR token. 
@@ -658,6 +666,13 @@ private JStatement statement(): {
     JStatement alternate = null;
     JStatement body = null;
     JExpression expr = null;
+
+    JStatement initialize =null;
+    JStatement terminate = null;
+    JExpression update = null;
+    JBlock block = null;
+
+
 }
 {       
     try {
@@ -678,15 +693,15 @@ private JStatement statement(): {
             new JIfStatement( line, test, consequent, alternate ); } |
 
         <FOR>  { line = token.beginLine; }
-
-
-            consequent = statement()
-            alternate = statement()
-            expr = expression()
-            body = statement()
+            <LPAREN>
+                initialize = statement()
+                terminate = statement()
+                update = expression()
+            <RPAREN>
+                block = block()
 
         {statement =
-         new JForStatement(line, consequent, alternate, expr, body );} |
+         new JForStatement(line, initialize, terminate, update, block );} |
 
         <WHILE> { line = token.beginLine; }
         test = parExpression() 
@@ -1017,7 +1032,7 @@ private Type type(): {
  * Parse a basic type.
  * 
  * <pre>
- *   basicType ::= BOOLEAN | CHAR | INT
+ *   basicType ::= BOOLEAN | CHAR | INT | DOUBLE
  * </pre>
  * 
  * @return an instance of Type.
@@ -1030,7 +1045,8 @@ private Type basicType(): {
     try {
         <BOOLEAN> { type = Type.BOOLEAN; } |
         <CHAR> { type = Type.CHAR; } |
-        <INT> { type = Type.INT; }
+        <INT> { type = Type.INT; } |
+        <DOUBLE> {type= Type.DOUBLE;}
     } 
     catch ( ParseException e ) { 
         recoverFromError( new int[] { SEMI, EOF }, e ); 
@@ -1661,7 +1677,7 @@ private JNewArrayOp newArrayDeclarator( Type type ): {
  * Parse a literal.
  * 
  * <pre>
- *   literal ::= INT_LITERAL | CHAR_LITERAL | STRING_LITERAL
+ *   literal ::= INT_LITERAL | DOUBLE_LITERAL | CHAR_LITERAL | STRING_LITERAL
  *             | TRUE        | FALSE        | NULL
  * </pre>
  * 
@@ -1674,7 +1690,9 @@ private JExpression literal(): {
 {       
     try {
         <INT_LITERAL> 
-        { expr = new JLiteralInt( token.beginLine, token.image ); } | 
+        { expr = new JLiteralInt( token.beginLine, token.image ); } |
+        <DOUBLE_LITERAL>
+        { expr = new JLiteralDouble(token.beginLine, token.image ); } |
         <CHAR_LITERAL> 
         { expr = new JLiteralChar( token.beginLine, token.image ); } |
         <STRING_LITERAL> 

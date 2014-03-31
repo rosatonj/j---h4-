@@ -11,9 +11,7 @@ public class HelloWorld {
     }
 
     public static void main(String[] args) {
-            for(inti=0;i<5;i++){
-                System.out.println(HelloWorld.message());
-            }
+        System.out.println(HelloWorld.message());
     }
 
 }

@@ -13,27 +13,23 @@ public class JForStatement extends JStatement {
 
 	/** Statement that occurs on every loop */
 	private JStatement consequent;
-	
+
+    /**Pick up block statement after the paren **/
+    private JBlock block;
+
 //	/** Statement that checks for initial that is a statement */
 //	private JStatement initialize;
 	
 	public JForStatement(int line, JStatement initialize, JStatement terminate,
-			JExpression update, JStatement consequent) {
+			JExpression update, JBlock block) {
 		super(line);
 		this.initialize = initialize;
 		this.terminate = terminate;
 		this.update = update;
-		this.consequent = consequent;
+		this.block = block;
 	}
 
-//	public JForStatement(int line, JStatement initialize2, JStatement terminate,
-//			JExpression update, JStatement consequent) {
-//		super(line);
-//		this.initialize2 = initialize2;
-//		this.terminate = terminate;
-//		this.update = update;
-//		this.consequent = consequent;
-//	}
+
 	
 	
 	public JAST analyze(Context context) {
@@ -64,7 +60,7 @@ public class JForStatement extends JStatement {
 		p.printf("</Update>\n");
 		p.printf("<Consequent>\n");
 		p.indentRight();
-		consequent.writeToStdOut(p);
+		block.writeToStdOut(p);
 		p.indentLeft();
 		p.printf("</Consequent>\n");
 		p.indentLeft();

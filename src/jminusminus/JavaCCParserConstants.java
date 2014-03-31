@@ -9,57 +9,62 @@ public interface JavaCCParserConstants {
   int BOOLEAN = 8;
   int CHAR = 9;
   int CLASS = 10;
-  int ELSE = 11;
-  int EXTENDS = 12;
-  int FOR = 13;
-  int FALSE = 14;
-  int IF = 15;
-  int IMPORT = 16;
-  int INSTANCEOF = 17;
-  int INT = 18;
-  int NEW = 19;
-  int NULL = 20;
-  int PACKAGE = 21;
-  int PRIVATE = 22;
-  int PROTECTED = 23;
-  int PUBLIC = 24;
-  int RETURN = 25;
-  int STATIC = 26;
-  int SUPER = 27;
-  int THIS = 28;
-  int TRUE = 29;
-  int VOID = 30;
-  int WHILE = 31;
-  int PLUS = 32;
-  int ASSIGN = 33;
-  int DEC = 34;
-  int EQUAL = 35;
-  int GT = 36;
-  int INC = 37;
-  int LAND = 38;
-  int LE = 39;
-  int LNOT = 40;
-  int MINUS = 41;
-  int PLUS_ASSIGN = 42;
-  int STAR = 43;
-  int LPAREN = 44;
-  int RPAREN = 45;
-  int LCURLY = 46;
-  int RCURLY = 47;
-  int LBRACK = 48;
-  int RBRACK = 49;
-  int SEMI = 50;
-  int COMMA = 51;
-  int DOT = 52;
-  int IDENTIFIER = 53;
-  int LETTER = 54;
-  int DIGIT = 55;
-  int NON_ZERO_DIGIT = 56;
-  int INT_LITERAL = 57;
-  int CHAR_LITERAL = 58;
-  int STRING_LITERAL = 59;
-  int ESC = 60;
-  int ERROR = 61;
+  int DOUBLE = 11;
+  int ELSE = 12;
+  int EXTENDS = 13;
+  int FOR = 14;
+  int FALSE = 15;
+  int IF = 16;
+  int IMPORT = 17;
+  int INSTANCEOF = 18;
+  int INT = 19;
+  int NEW = 20;
+  int NULL = 21;
+  int PACKAGE = 22;
+  int PRIVATE = 23;
+  int PROTECTED = 24;
+  int PUBLIC = 25;
+  int RETURN = 26;
+  int STATIC = 27;
+  int SUPER = 28;
+  int THIS = 29;
+  int TRUE = 30;
+  int VOID = 31;
+  int WHILE = 32;
+  int PLUS = 33;
+  int ASSIGN = 34;
+  int DEC = 35;
+  int EQUAL = 36;
+  int GT = 37;
+  int INC = 38;
+  int LAND = 39;
+  int LE = 40;
+  int LNOT = 41;
+  int MINUS = 42;
+  int PLUS_ASSIGN = 43;
+  int STAR = 44;
+  int LPAREN = 45;
+  int RPAREN = 46;
+  int LCURLY = 47;
+  int RCURLY = 48;
+  int LBRACK = 49;
+  int RBRACK = 50;
+  int SEMI = 51;
+  int COMMA = 52;
+  int DOT = 53;
+  int IDENTIFIER = 54;
+  int LETTER = 55;
+  int DIGIT = 56;
+  int NON_ZERO_DIGIT = 57;
+  int EXPONENT = 58;
+  int SIGN = 59;
+  int SUFFIX = 60;
+  int INT_LITERAL = 61;
+  int DOUBLE_LITERAL = 62;
+  int CHAR_LITERAL = 63;
+  int STRING_LITERAL = 64;
+  int ESC = 65;
+  int ERROR = 66;
 
   int DEFAULT = 0;
 
@@ -75,6 +80,7 @@ public interface JavaCCParserConstants {
     "\"boolean\"",
     "\"char\"",
     "\"class\"",
+    "\"double\"",
     "\"else\"",
     "\"extends\"",
     "\"for\"",
@@ -121,7 +127,11 @@ public interface JavaCCParserConstants {
     "<LETTER>",
     "<DIGIT>",
     "<NON_ZERO_DIGIT>",
+    "<EXPONENT>",
+    "<SIGN>",
+    "<SUFFIX>",
     "<INT_LITERAL>",
+    "<DOUBLE_LITERAL>",
     "<CHAR_LITERAL>",
     "<STRING_LITERAL>",
     "<ESC>",

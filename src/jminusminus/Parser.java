@@ -802,7 +802,7 @@ public class Parser {
 					JStatement term = statement();
 					JExpression update = expression();
 					mustBe(RPAREN);
-					JStatement consequent = statement();
+					JBlock consequent = block();
 					return new JForStatement(line, initialize, term, update,
 							consequent);
 				}
@@ -811,9 +811,8 @@ public class Parser {
 				JStatement term = statement();
 				JExpression update = expression();
 				mustBe(RPAREN);
-				JStatement consequent = statement();
-				return new JForStatement(line, initialize, term, update,
-						consequent);
+				JBlock block = block();
+				return new JForStatement(line, initialize, term, update, block);
 			}
 		} else if (have(WHILE)) {
 			JExpression test = parExpression();
