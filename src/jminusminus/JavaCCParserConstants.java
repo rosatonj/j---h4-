@@ -16,55 +16,57 @@ public interface JavaCCParserConstants {
   int FALSE = 15;
   int IF = 16;
   int IMPORT = 17;
-  int INSTANCEOF = 18;
-  int INT = 19;
-  int NEW = 20;
-  int NULL = 21;
-  int PACKAGE = 22;
-  int PRIVATE = 23;
-  int PROTECTED = 24;
-  int PUBLIC = 25;
-  int RETURN = 26;
-  int STATIC = 27;
-  int SUPER = 28;
-  int THIS = 29;
-  int TRUE = 30;
-  int VOID = 31;
-  int WHILE = 32;
-  int PLUS = 33;
-  int ASSIGN = 34;
-  int DEC = 35;
-  int EQUAL = 36;
-  int GT = 37;
-  int INC = 38;
-  int LAND = 39;
-  int LE = 40;
-  int LNOT = 41;
-  int MINUS = 42;
-  int PLUS_ASSIGN = 43;
-  int STAR = 44;
-  int LPAREN = 45;
-  int RPAREN = 46;
-  int LCURLY = 47;
-  int RCURLY = 48;
-  int LBRACK = 49;
-  int RBRACK = 50;
-  int SEMI = 51;
-  int COMMA = 52;
-  int DOT = 53;
-  int IDENTIFIER = 54;
-  int LETTER = 55;
-  int DIGIT = 56;
-  int NON_ZERO_DIGIT = 57;
-  int EXPONENT = 58;
-  int SIGN = 59;
-  int SUFFIX = 60;
-  int INT_LITERAL = 61;
-  int DOUBLE_LITERAL = 62;
-  int CHAR_LITERAL = 63;
-  int STRING_LITERAL = 64;
-  int ESC = 65;
-  int ERROR = 66;
+  int IMPLEMENTS = 18;
+  int INTERFACE = 19;
+  int INSTANCEOF = 20;
+  int INT = 21;
+  int NEW = 22;
+  int NULL = 23;
+  int PACKAGE = 24;
+  int PRIVATE = 25;
+  int PROTECTED = 26;
+  int PUBLIC = 27;
+  int RETURN = 28;
+  int STATIC = 29;
+  int SUPER = 30;
+  int THIS = 31;
+  int TRUE = 32;
+  int VOID = 33;
+  int WHILE = 34;
+  int PLUS = 35;
+  int ASSIGN = 36;
+  int DEC = 37;
+  int EQUAL = 38;
+  int GT = 39;
+  int INC = 40;
+  int LAND = 41;
+  int LE = 42;
+  int LNOT = 43;
+  int MINUS = 44;
+  int PLUS_ASSIGN = 45;
+  int STAR = 46;
+  int LPAREN = 47;
+  int RPAREN = 48;
+  int LCURLY = 49;
+  int RCURLY = 50;
+  int LBRACK = 51;
+  int RBRACK = 52;
+  int SEMI = 53;
+  int COMMA = 54;
+  int DOT = 55;
+  int IDENTIFIER = 56;
+  int LETTER = 57;
+  int DIGIT = 58;
+  int NON_ZERO_DIGIT = 59;
+  int EXPONENT = 60;
+  int SIGN = 61;
+  int SUFFIX = 62;
+  int INT_LITERAL = 63;
+  int DOUBLE_LITERAL = 64;
+  int CHAR_LITERAL = 65;
+  int STRING_LITERAL = 66;
+  int ESC = 67;
+  int ERROR = 68;
 
   int DEFAULT = 0;
 
@@ -87,6 +89,8 @@ public interface JavaCCParserConstants {
     "\"false\"",
     "\"if\"",
     "\"import\"",
+    "\"implements\"",
+    "\"interface\"",
     "\"instanceof\"",
     "\"int\"",
     "\"new\"",

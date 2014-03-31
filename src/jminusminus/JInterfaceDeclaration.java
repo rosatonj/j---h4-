@@ -29,22 +29,32 @@ class JInterfaceDeclaration extends JAST implements JTypeDecl, JMember {
 	private boolean hasExplicitConstructor;
 
 	/** Instance fields of this interface. */
-	private ArrayList<JFieldDeclaration> instanceFieldInitializations;
 
-	public JInterfaceDeclaration(int line, ArrayList<String> mods, String name,
-			ArrayList<TypeName> extend, ArrayList<JMember> interfaceBlock) {
-		super(line);
-		this.mods = mods;
-		this.name = name;
-		this.extend = extend;
-		this.interfaceBlock = interfaceBlock;
-		hasExplicitConstructor = false;
-		instanceFieldInitializations = new ArrayList<JFieldDeclaration>();
-	}
+    private ArrayList<JFieldDeclaration> instanceFieldInitializations;
+    public JInterfaceDeclaration(int line, ArrayList<String> mods, String name,
+                                 ArrayList<TypeName> extend, ArrayList<JMember> interfaceBlock) {
+        super(line);
+        this.mods = mods;
+        this.name = name;
+        this.extend = extend;
+        this.interfaceBlock = interfaceBlock;
+        hasExplicitConstructor = false;
+        instanceFieldInitializations = new ArrayList<JFieldDeclaration>();
+    }
+    public JInterfaceDeclaration(int line, ArrayList<String> mods, String name,
+                                 Type superType,ArrayList<JMember> interfaceBlock) {
+        super(line);
+        this.mods = mods;
+        this.name = name;
+        this.superType = superType;
+        this.interfaceBlock = interfaceBlock;
+        hasExplicitConstructor = false;
+        instanceFieldInitializations = new ArrayList<JFieldDeclaration>();
+    }
 
 	/**
 	 * Return the interface name.
-	 * 
+	 *
 	 * @return the interface name.
 	 */
 
