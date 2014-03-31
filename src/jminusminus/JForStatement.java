@@ -3,7 +3,7 @@ package jminusminus;
 public class JForStatement extends JStatement {
 
 	/** Initialize a variable. */
-	private JStatement initialize;
+	private JVariableDeclarator initialize;
 	
 	/** Statement that terminates the loop */
 	private JStatement terminate;
@@ -11,17 +11,17 @@ public class JForStatement extends JStatement {
 	/** Statement that updates the variable for next loop */
 	private JExpression update;
 
-	/** Statement that occurs on every loop */
-	private JStatement consequent;
+//	/** Statement that occurs on every loop */
+//	private JStatement consequent;
 
     /**Pick up block statement after the paren **/
-    private JBlock block;
+    private JStatement block;
 
 //	/** Statement that checks for initial that is a statement */
 //	private JStatement initialize;
 	
-	public JForStatement(int line, JStatement initialize, JStatement terminate,
-			JExpression update, JBlock block) {
+	public JForStatement(int line, JVariableDeclarator initialize, JStatement terminate,
+			JExpression update, JStatement block) {
 		super(line);
 		this.initialize = initialize;
 		this.terminate = terminate;

@@ -791,15 +791,15 @@ public class Parser {
 			JVariableDeclarator initialize =variableDeclarator(type());
             if (seeBasicType()) { // checks if data type is instantiated in the
 									// loop
-				JVariableDeclarator init = variableDeclarator(type());
+				//JVariableDeclarator init = variableDeclarator(type());
 				if (have(COLON)) { // enhanced for-loop
 					JExpression array = primary();
 					mustBe(RPAREN);
 					JBlock consequent = block();
-					return new JEnhancedForStatement(line, init, array,
+					return new JEnhancedForStatement(line, initialize, array,
 							consequent);
 				} else {
-					JStatement initialize = statement();
+				//	JStatement initialize = statement();
 					JStatement term = statement();
 					JExpression update = expression();
 					mustBe(RPAREN);
@@ -808,7 +808,7 @@ public class Parser {
 							consequent);
 				}
 			} else {
-				JStatement initialize = statement();
+			//	JStatement initialize = statement();
 				JStatement term = statement();
 				JExpression update = expression();
 				mustBe(RPAREN);
